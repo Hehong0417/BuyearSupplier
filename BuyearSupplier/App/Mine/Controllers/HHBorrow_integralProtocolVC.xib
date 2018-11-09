@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HHBorrow_integralProtocolVC">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Aet-07-Ga5">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <mutableString key="text">百业惠借积分服务协议：
+一、总则 1.1 您在使用百业惠商城提供的借积分服务之前，应仔细阅读本服务协议。用户在进行借积分程序过程中点击"同意"按钮即表示用户与广东圣韵百业惠电子商务有限公司达成协议，完全接受本协议全部条款。
+二、服务规则 2.1借积分规则 2.1.1 百业惠账号（即百业惠用户8位编号）。 2.1.2 申请O2O高级微商资质会员，需账户中存有2万积分，才可以向公司申请借积分1万。 2.1.3 申请O2O社区体验店资质会员，需账户中存有20万积分，才可以向公司申请借积分10万。 2.1.4 借积分额仅限当前账户使用，不可转借、转赠他人。 2.1.5 O2O高级微商借积分账户，分利现金积分由39000调整为36000。 2.1.6 O2O社区体验店借积分账户，分利现金积分由390000调整为360000。 2.2还积分规则 2.2.1借积分统一分10期还积分，每月还积分额为借出额十分之一。 2.2.2自首次微商分利日起，开始扣除第一月现金积分还额；次月依此类推。 2.2.3若还积分账户当月不足还现金积分额，该账户将被暂时停用（奖金正常发放），待用户补交还积分额后账户恢复使用。 三、其他说明 3.1 如本协议中的任何条款无论因何种原因完全或部分无效或不具有执行力，本协议的其余条款仍应有效并且有约束力。 3.2 本协议最终解释权归广东圣韵百业惠电子商务有限公司所有。
+</mutableString>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Aet-07-Ga5" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" id="7gk-2f-htn"/>
+                <constraint firstItem="Aet-07-Ga5" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K2j-XS-gJZ"/>
+                <constraint firstItem="Aet-07-Ga5" firstAttribute="trailing" secondItem="Q5M-cg-NOt" secondAttribute="trailing" id="nIw-0h-uzn"/>
+                <constraint firstItem="Aet-07-Ga5" firstAttribute="bottom" secondItem="Q5M-cg-NOt" secondAttribute="bottom" id="wUA-3G-TQL"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+        </view>
+    </objects>
+</document>

@@ -1,0 +1,6 @@
+framework module WHC_AutoLayoutKit {
+  umbrella header "WHC_AutoLayoutKit-umbrella.h"
+
+  export *
+  module * { export * }
+}
