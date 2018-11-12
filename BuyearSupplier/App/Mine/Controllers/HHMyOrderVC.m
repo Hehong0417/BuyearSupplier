@@ -284,14 +284,6 @@
     self.sg_selectIndex = index;
     [self.tableView.mj_header beginRefreshing];
 
-//    self.page = 1;
-//    [self.datas removeAllObjects];
-//      self.sg_selectIndex = index;
-//    if (index == 0) {
-//        [self getDatasWithIndex:nil];
-//    }else{
-//        [self getDatasWithIndex:@(index-1)];
-//    }
 }
 
 #pragma mark --- tableView delegate
@@ -366,6 +358,7 @@
             //twoBtn
             [self setBtnAttrWithBtn:twoBtn Title:@"去支付" CornerRadius:5 borderColor:APP_COMMON_COLOR titleColor:kWhiteColor backgroundColor:APP_COMMON_COLOR];
         }else if([status isEqualToString:@"1"]){
+            
             //待发货
             if ([model.ship_channel isEqualToString:@"1"]) {
                 down_y = 0;
@@ -378,15 +371,21 @@
             oneBtn.hidden = YES;
             //twoBtn
             twoBtn.hidden = NO;
-            [self setBtnAttrWithBtn:twoBtn Title:@"申请退款" CornerRadius:5 borderColor:APP_COMMON_COLOR titleColor:APP_COMMON_COLOR backgroundColor:kWhiteColor];
+                if ([model.refund_status isEqualToString:@"0"]){
+                  [self setBtnAttrWithBtn:twoBtn Title:@"申请退款" CornerRadius:5 borderColor:APP_COMMON_COLOR titleColor:APP_COMMON_COLOR backgroundColor:kWhiteColor];
+                }else{
+                    down_y = 0;
+                    twoBtn.hidden = YES;
+                }
             }
         }else if([status isEqualToString:@"2"]){
             //待收货
             down_y = 52;
-            if ([model.is_exist_reeturn_goods_Express isEqualToString:@"1"]) {
+            if ([model.is_exist_reeturn_goods_express isEqualToString:@"1"]) {
                 
                 [leftBtn setTitle:@"退货物流" forState:UIControlStateNormal];
             }else{
+                
                 [leftBtn setTitle:@"填写物流" forState:UIControlStateNormal];
             }
             //oneBtn
@@ -413,7 +412,8 @@
                     }else{
                         oneBtn.hidden = YES;
                     }
-                    if ([model.is_exist_reeturn_goods_Express isEqualToString:@"1"]) {
+                    
+                    if ([model.is_exist_reeturn_goods_express isEqualToString:@"1"]) {
                         [self setBtnAttrWithBtn:oneBtn Title:@"退货物流" CornerRadius:5 borderColor:APP_COMMON_COLOR titleColor:APP_COMMON_COLOR backgroundColor:kWhiteColor];
                     }else{
                         
@@ -450,14 +450,12 @@
             //oneBtn
             oneBtn.hidden = YES;
             twoBtn.hidden = YES;
-            
         }
     }
     UIView *downLine = [UIView lh_viewWithFrame:CGRectMake(0, down_y, SCREEN_WIDTH, 8) backColor:KVCBackGroundColor];
     [footView addSubview:downLine];
 
     return footView;
-    
 }
 - (void)setBtnAttrWithBtn:(UIButton *)btn Title:(NSString *)title CornerRadius:(NSInteger)cornerRadius borderColor:(UIColor *)borderColor titleColor:(UIColor *)titleColor backgroundColor:(UIColor *)backgroundColor{
     
@@ -465,9 +463,7 @@
     [btn lh_setCornerRadius:cornerRadius borderWidth:1 borderColor:borderColor];
     [btn setTitleColor:titleColor forState:UIControlStateNormal];
     [btn setBackgroundColor:backgroundColor];
-    
 }
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     HHCartModel *model = [HHCartModel mj_objectWithKeyValues:self.datas[indexPath.section]];
@@ -494,9 +490,7 @@
         HHCartModel *orderModel = [HHCartModel mj_objectWithKeyValues:self.datas[indexPath.section]];
         vc.orderid = orderModel.orderid;
         [self.navigationController pushVC:vc];
-        
     }
-
 }
 - (void)oneAction:(UIButton *)btn{
     NSInteger section = btn.tag - 100;
@@ -517,16 +511,23 @@
             HHReturnGoodsVC *vc = [HHReturnGoodsVC new];
             vc.titleStr = @"申请退货";
             vc.orderid = model.orderid;
-            vc.returnBlock = ^{
+            vc.sg_selectIndex = self.sg_selectIndex;
+            
+            vc.returnBlock = ^(NSNumber *sg_selectIndex) {
                 self.page = 1;
-                self.sg_selectIndex = 3;
+                self.sg_selectIndex = sg_selectIndex.integerValue;
                 [self.datas removeAllObjects];
-                [self getDatasWithIndex:@2];
+                if (self.sg_selectIndex == 0) {
+                    [self getDatasWithIndex:nil];
+                }else{
+                    [self getDatasWithIndex:@(self.sg_selectIndex-1)];
+                }
             };
+           
             [self.navigationController pushVC:vc];
             
         }else{
-            if ([model.is_exist_reeturn_goods_Express isEqualToString:@"1"]) {
+            if ([model.is_exist_reeturn_goods_express isEqualToString:@"1"]) {
                 //查看退货物流
                 HHLogisticsVC *vc = [HHLogisticsVC new];
                 vc.orderid = model.orderid;
@@ -540,10 +541,15 @@
                 vc.orderid = model.orderid;
                 vc.return_goods_express_code = model.return_goods_express_code;
                 vc.return_goods_express_order = model.return_goods_express_order;
-                vc.return_numb_block = ^(NSNumber *result) {
+                vc.return_numb_block = ^(NSNumber *sg_selectIndex) {
+                    self.sg_selectIndex = sg_selectIndex.integerValue;
                     self.page = 1;
                     [self.datas removeAllObjects];
-                    [self getDatasWithIndex:@(self.sg_selectIndex-1)];
+                    if (self.sg_selectIndex == 0) {
+                        [self getDatasWithIndex:nil];
+                    }else{
+                        [self getDatasWithIndex:@(self.sg_selectIndex-1)];
+                    }
                 };
                 [self.navigationController pushVC:vc];
             }
@@ -669,12 +675,18 @@
         HHReturnGoodsVC *vc = [HHReturnGoodsVC new];
         vc.titleStr = @"申请退款";
         vc.orderid = model.orderid;
-        vc.returnBlock = ^{
+        vc.sg_selectIndex = self.sg_selectIndex;
+        vc.returnBlock = ^(NSNumber *sg_selectIndex) {
             self.page = 1;
-            self.sg_selectIndex = 3;
+            self.sg_selectIndex = sg_selectIndex.integerValue;
             [self.datas removeAllObjects];
-            [self getDatasWithIndex:@1];
+            if (self.sg_selectIndex == 0) {
+                [self getDatasWithIndex:nil];
+            }else{
+                [self getDatasWithIndex:@(self.sg_selectIndex-1)];
+            }
         };
+
         [self.navigationController pushVC:vc];
         
     }else if([status isEqualToString:@"2"]){
@@ -696,13 +708,13 @@
 - (void)leftBtnAction:(UIButton *)btn{
     NSInteger section = btn.tag - 1001;
     HHCartModel *model = [HHCartModel mj_objectWithKeyValues:self.datas[section]];
-    if ([model.is_exist_reeturn_goods_Express isEqualToString:@"1"]) {
+    if ([model.is_exist_reeturn_goods_express isEqualToString:@"1"]) {
         //查看退货物流
         HHLogisticsVC *vc = [HHLogisticsVC new];
         vc.orderid = model.orderid;
         vc.express_order = model.return_goods_express_order;
         vc.express_name = model.return_goods_express_name;
-        vc.type = @1;
+        vc.type = @0;
         [self.navigationController pushVC:vc];
     }else{
         //填写物流

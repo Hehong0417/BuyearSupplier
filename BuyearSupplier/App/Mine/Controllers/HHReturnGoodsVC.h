@@ -10,10 +10,13 @@
 
 @interface HHReturnGoodsVC : UIViewController
 
-@property(nonatomic,copy) voidBlock returnBlock;
+@property(nonatomic,copy) numberBlock returnBlock;
 
 @property(nonatomic,strong) NSString  *titleStr;
 
 @property(nonatomic,strong) NSString  *orderid;
+
+@property(nonatomic,assign) NSInteger  sg_selectIndex;
+
 
 @end

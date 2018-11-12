@@ -118,7 +118,7 @@
             if (!error) {
                 if (api.code == 0) {
                     if (self.returnBlock) {
-                        self.returnBlock();
+                        self.returnBlock(@(self.sg_selectIndex));
                     }
                     if ([self.titleStr isEqualToString:@"申请退款"]) {
                         [SVProgressHUD showSuccessWithStatus:@"退款申请成功！"];

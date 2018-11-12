@@ -48,7 +48,7 @@
 @property(nonatomic,strong) NSString *refund_status;
 @property(nonatomic,strong) NSString *is_agree_return_goods;
 //是存在退货物流
-@property(nonatomic,strong) NSString *is_exist_reeturn_goods_Express;
+@property(nonatomic,strong) NSString *is_exist_reeturn_goods_express;
 @property(nonatomic,strong) NSString *return_goods_express_code;
 @property(nonatomic,strong) NSString *return_goods_express_order;
 @property(nonatomic,strong) NSString *return_goods_express_name;

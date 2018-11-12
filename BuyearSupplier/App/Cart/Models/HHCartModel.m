@@ -27,7 +27,11 @@
 //            stutus = @"待发货";
             if ([self.ship_channel isEqualToString:@"0"]) {
                 //总部
-                self.footHeight = 60;
+                if ([self.refund_status isEqualToString:@"0"]){
+                    self.footHeight = 60;
+                }else{
+                    self.footHeight = 8;
+                }
             }else{
                 //体验店
                 self.footHeight = 8;
