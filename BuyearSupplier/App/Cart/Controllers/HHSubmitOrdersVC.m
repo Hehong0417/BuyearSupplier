@@ -33,7 +33,7 @@
 @property (nonatomic, strong)   NSMutableArray *leftTitle2Arr;
 @property (nonatomic, strong)   NSMutableArray *rightDetailArr;
 @property (nonatomic, strong)   NSMutableArray *rightDetail2Arr;
-@property (nonatomic, strong)   HHCartModel *model;
+@property (nonatomic, strong)   HHCartItemModel *model;
 @property (nonatomic, strong)   NSString *address_id;
 @property (nonatomic, strong)   NSNumber *pay_mode;
 @property (nonatomic, strong)   NSString *Id;
@@ -337,12 +337,11 @@
             
                 if (!error) {
                     if (api.code == 0) {
-                        self.model =  [HHCartModel mj_objectWithKeyValues:api.data];
+                        self.model =  [HHCartItemModel mj_objectWithKeyValues:api.data];
                         HJUser *user = [HJUser sharedUser];
                         user.login_userid = self.model.login_userid;
                         user.login_username = self.model.login_username;
                         [user write];
-                        
                         self.datas = self.model.products.mutableCopy;
                         
                         if ([self.model.ship_channel isEqualToString:@"1"]) {
@@ -352,7 +351,6 @@
                             [self.rightDetailArr replaceObjectAtIndex:1 withObject:@"总部"];
                             [self.rightDetail2Arr replaceObjectAtIndex:1 withObject:@"总部"];
                         }
-                        
                         //***********普通用户*********//
                      
                         if ([user.level isEqualToString:@"0"]) {
@@ -518,27 +516,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        HHSubmitOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HHSubmitOrderCell"];
-        HHproductsModel *model =  self.datas[indexPath.row];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.productsModel = model;
-        return cell;
-        
-    }else{
-       UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (indexPath.section == self.datas.count) {
+        UITableViewCell *cell1 = [tableView dequeueReusableCellWithIdentifier:@"cell"];
         if (!cell1) {
             cell1 = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"cell"];
         }
         if (indexPath.row == 0||indexPath.row == 1||indexPath.row == 2) {
             cell1.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         }
-       cell1.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell1.selectionStyle = UITableViewCellSelectionStyleNone;
         if ([self.model.shop_type isEqualToString:@"0"]) {
             //百业惠
             cell1.textLabel.text = self.leftTitle2Arr[indexPath.row];
             cell1.detailTextLabel.text = self.rightDetail2Arr[indexPath.row];
-          
+            
             if (indexPath.row == 3) {
                 cell1.detailTextLabel.text =  [NSString stringWithFormat:@"¥ %@",self.rightDetail2Arr[indexPath.row]];
             }
@@ -548,20 +539,20 @@
             HJUser *user = [HJUser sharedUser];
             if (![user.level isEqualToString:@"0"]) {
                 //
-               if (indexPath.row == 5) {
-                integral_TF = [UITextField lh_textFieldWithFrame:CGRectMake(0, 0, 100, 30) placeholder:@"" font:FONT(14) textAlignment:NSTextAlignmentRight backgroundColor:kWhiteColor];
-                integral_TF.textColor = KTitleLabelColor;
-                integral_TF.borderStyle = UITextBorderStyleNone;
-                integral_TF.keyboardType = UIKeyboardTypeDecimalPad;
-                integral_TF.delegate = self;
-                cell1.detailTextLabel.text = @"";
-                integral_TF.text =  [NSString stringWithFormat:@"可用%@",self.rightDetail2Arr[indexPath.row]];
-                integral_TF.enabled = NO;
-                integral_TF.textColor = kGrayColor;
-                cell1.accessoryView = integral_TF;
-                  
+                if (indexPath.row == 5) {
+                    integral_TF = [UITextField lh_textFieldWithFrame:CGRectMake(0, 0, 100, 30) placeholder:@"" font:FONT(14) textAlignment:NSTextAlignmentRight backgroundColor:kWhiteColor];
+                    integral_TF.textColor = KTitleLabelColor;
+                    integral_TF.borderStyle = UITextBorderStyleNone;
+                    integral_TF.keyboardType = UIKeyboardTypeDecimalPad;
+                    integral_TF.delegate = self;
+                    cell1.detailTextLabel.text = @"";
+                    integral_TF.text =  [NSString stringWithFormat:@"可用%@",self.rightDetail2Arr[indexPath.row]];
+                    integral_TF.enabled = NO;
+                    integral_TF.textColor = kGrayColor;
+                    cell1.accessoryView = integral_TF;
+                    
                 }
-                }
+            }
             //备注（普通用户）
             if (indexPath.row == 6) {
                 if ([user.level isEqualToString:@"0"]) {
@@ -584,18 +575,18 @@
             }
             HJUser *user = [HJUser sharedUser];
             if (![user.level isEqualToString:@"0"]) {
-            if (indexPath.row == 5) {
-                integral_TF = [UITextField lh_textFieldWithFrame:CGRectMake(0, 0, 100, 30) placeholder:@"" font:FONT(14) textAlignment:NSTextAlignmentRight backgroundColor:kWhiteColor];
-                integral_TF.textColor = KTitleLabelColor;
-                integral_TF.borderStyle = UITextBorderStyleNone;
-                integral_TF.keyboardType = UIKeyboardTypeNumberPad;
-                integral_TF.delegate = self;
-                integral_TF.enabled = YES;
-                cell1.accessoryView = integral_TF;
-                cell1.detailTextLabel.text = @"";
-                integral_TF.text =  [NSString stringWithFormat:@"%@ ",self.rightDetailArr[indexPath.row]];
-                [integral_TF lh_setCornerRadius:0 borderWidth:1 borderColor:KACLabelColor];
-                     }
+                if (indexPath.row == 5) {
+                    integral_TF = [UITextField lh_textFieldWithFrame:CGRectMake(0, 0, 100, 30) placeholder:@"" font:FONT(14) textAlignment:NSTextAlignmentRight backgroundColor:kWhiteColor];
+                    integral_TF.textColor = KTitleLabelColor;
+                    integral_TF.borderStyle = UITextBorderStyleNone;
+                    integral_TF.keyboardType = UIKeyboardTypeNumberPad;
+                    integral_TF.delegate = self;
+                    integral_TF.enabled = YES;
+                    cell1.accessoryView = integral_TF;
+                    cell1.detailTextLabel.text = @"";
+                    integral_TF.text =  [NSString stringWithFormat:@"%@ ",self.rightDetailArr[indexPath.row]];
+                    [integral_TF lh_setCornerRadius:0 borderWidth:1 borderColor:KACLabelColor];
+                }
             }
             //备注（普通用户）
             if (indexPath.row == 6) {
@@ -606,20 +597,19 @@
                 }
             }
         }
-
         //***************************//
         if (indexPath.row == 8) {
             
             if ([self.model.shop_type isEqualToString:@"0"]) {
                 //百业惠（提货积分）
                 if (!swi) {
-                swi = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-70, 4,70, 36)];
-                [swi addTarget:self action:@selector(swiAction:) forControlEvents:UIControlEventValueChanged];
-                [cell1.contentView addSubview:swi];
+                    swi = [[UISwitch alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-70, 4,70, 36)];
+                    [swi addTarget:self action:@selector(swiAction:) forControlEvents:UIControlEventValueChanged];
+                    [cell1.contentView addSubview:swi];
                 }
                 HJUser *user = [HJUser sharedUser];
                 [swi setOn:user.is_pickageIntegral];
-
+                
             }else if ([self.model.shop_type isEqualToString:@"1"]){
                 //惠万家（购物积分）
                 noteTF = [[UITextField alloc]initWithFrame:CGRectMake(70, 0, SCREEN_WIDTH-70, 44)];
@@ -641,72 +631,72 @@
             //惠万家
             
         }
-    return cell1;
+        return cell1;
+        
+    }else{
+
+        HHSubmitOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:@"HHSubmitOrderCell"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        HHItemsModel *model =  self.datas[indexPath.section];
+        cell.productsModel = model.items[indexPath.row];
+        return cell;
     }
     return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    if (section == 0) {
-        
-        return self.datas.count;
-
-    }else{
+    if (section == self.datas.count) {
         if ([self.model.shop_type isEqualToString:@"0"]) {
             //百业惠-->提货
             return self.leftTitle2Arr.count;
-
+            
         }else{
             return self.leftTitleArr.count;
         }
+
+    }else{
+        HHItemsModel *model =  self.datas[section];
+        return model.items.count;
     }
     
     return 1;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    return self.datas.count+1;
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-           return 110;
+    if (indexPath.section == self.datas.count) {
+        return 44;
     }else{
-           return 44;
+        return 110;
     }
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        
-        HHGoodBaseViewController *vc = [HHGoodBaseViewController new];
-        HHproductsModel *model = self.datas[indexPath.row];
-        vc.Id = model.pid;
-        [self.navigationController pushVC:vc];
-        
-    }else{
-        
+    if (indexPath.section == self.datas.count) {
         if (indexPath.row == 0) {
             HHCurrentStoreVC *vc = [HHCurrentStoreVC new];
-             vc.store_num =  self.model.login_userid;
+            vc.store_num =  self.model.login_userid;
             [self.navigationController pushVC:vc];
         }
         if (indexPath.row == 1) {
             //发货渠道
-//            HJUser *user = [HJUser sharedUser];
-//            if (user.login_userid.length>0) {
-//                [pickView setStyle:HXCommonPickViewStyleDIY titleArr:@[@"总部",@"体验店"]];
-//                [pickView showPickViewAnimation:YES];
-//                WEAK_SELF();
-//                pickView.completeBlock = ^(NSString *result) {
-//
-//                    [weakSelf.rightDetailArr replaceObjectAtIndex:1 withObject:result];
-//                    [weakSelf.rightDetail2Arr replaceObjectAtIndex:1 withObject:result];
-//                    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-//                    cell.detailTextLabel.text = result;
-//                };
-//            }
+            //            HJUser *user = [HJUser sharedUser];
+            //            if (user.login_userid.length>0) {
+            //                [pickView setStyle:HXCommonPickViewStyleDIY titleArr:@[@"总部",@"体验店"]];
+            //                [pickView showPickViewAnimation:YES];
+            //                WEAK_SELF();
+            //                pickView.completeBlock = ^(NSString *result) {
+            //
+            //                    [weakSelf.rightDetailArr replaceObjectAtIndex:1 withObject:result];
+            //                    [weakSelf.rightDetail2Arr replaceObjectAtIndex:1 withObject:result];
+            //                    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+            //                    cell.detailTextLabel.text = result;
+            //                };
+            //            }
         }
         if (indexPath.row == 2) {
             //配送方式
@@ -718,21 +708,36 @@
                 UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
                 cell.detailTextLabel.text = result;
             };
-             [pickView showPickViewAnimation:YES];
+            [pickView showPickViewAnimation:YES];
         }
+        //////
+        
+    }else{
+        
+        HHGoodBaseViewController *vc = [HHGoodBaseViewController new];
+        HHItemsModel *model =  self.datas[indexPath.section];
+        HHproductsModel *p_model = model.items[indexPath.row];
+        vc.Id = p_model.pid;
+        [self.navigationController pushVC:vc];
+       
     }
 
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    if (section == 0) {
+    if (section == self.datas.count) {
         
+        return nil;
+
+    }else{
+        HHItemsModel *model =  self.datas[section];
         UIView *sectionHead =  [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 35)];
         sectionHead.backgroundColor = kWhiteColor;
-        UILabel *orderNo = [UILabel lh_labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH-30, 35) text:@"订单" textColor:kBlackColor font:FONT(13) textAlignment:NSTextAlignmentLeft backgroundColor:kWhiteColor];
+        UILabel *orderNo = [UILabel lh_labelWithFrame:CGRectMake(15, 0, SCREEN_WIDTH-30, 35) text:model.supplier_name.length>0?model.supplier_name:@"自营" textColor:kBlackColor font:FONT(13) textAlignment:NSTextAlignmentLeft backgroundColor:kWhiteColor];
         [sectionHead addSubview:orderNo];
         
         return sectionHead;
+        
     }
     return nil;
     
@@ -743,10 +748,12 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    if (section == 0) {
+    if (section == self.datas.count) {
         
+        return 0.01;
+        
+    }else{
         return 35;
-        
     }
     return 0.01;
     

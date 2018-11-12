@@ -14,7 +14,6 @@
 //购物车
 @property(nonatomic,strong) NSString *money_total;
 @property(nonatomic,strong) NSString *sintegral_total;
-@property(nonatomic,strong) NSArray <HHproductsModel*>*products;
 
 //提交订单
 @property(nonatomic,strong) NSString *s_integral_total;
@@ -28,6 +27,7 @@
 @property(nonatomic,strong) NSString *login_userid;
 @property(nonatomic,strong) NSString *login_username;
 @property(nonatomic,strong) NSString *max_usable_shopping_integral;
+@property(nonatomic,strong) NSArray <HHproductsModel*>*products;
 
 //我的订单
 @property(nonatomic,strong) NSString *status;
@@ -81,7 +81,6 @@
 @property(nonatomic,strong) NSString *s_integral;
 @property(nonatomic,strong) NSString *shop_type;
 @property(nonatomic,strong) NSString *s_integral_total;
-
 
 //提交订单
 @property(nonatomic,strong) NSString *price;

@@ -177,6 +177,7 @@
 		CE57C1D0206E1ED200FF2FBA /* HHMyOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57C1CF206E1ED200FF2FBA /* HHMyOrderItem.m */; };
 		CE5A3543207C75B10030E6DA /* HHWithDrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A3541207C75B00030E6DA /* HHWithDrawCell.m */; };
 		CE5A3544207C75B10030E6DA /* HHWithDrawCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5A3542207C75B00030E6DA /* HHWithDrawCell.xib */; };
+		CE5BC9BF21992351007A1C67 /* HHCartItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5BC9BE21992351007A1C67 /* HHCartItemModel.m */; };
 		CE62A1DC2089E3450020F0EA /* HHSecKillQuotaVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE62A1DB2089E3450020F0EA /* HHSecKillQuotaVC.m */; };
 		CE64944C20038BB900AC7C7A /* HHOrderDetailHead.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE64944B20038BB900AC7C7A /* HHOrderDetailHead.xib */; };
 		CE64944F20038C7700AC7C7A /* HHOrderDetailHead.m in Sources */ = {isa = PBXBuildFile; fileRef = CE64944E20038C7700AC7C7A /* HHOrderDetailHead.m */; };
@@ -693,6 +694,8 @@
 		CE5A3540207C75B00030E6DA /* HHWithDrawCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHWithDrawCell.h; sourceTree = "<group>"; };
 		CE5A3541207C75B00030E6DA /* HHWithDrawCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHWithDrawCell.m; sourceTree = "<group>"; };
 		CE5A3542207C75B00030E6DA /* HHWithDrawCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HHWithDrawCell.xib; sourceTree = "<group>"; };
+		CE5BC9BD21992351007A1C67 /* HHCartItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHCartItemModel.h; sourceTree = "<group>"; };
+		CE5BC9BE21992351007A1C67 /* HHCartItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHCartItemModel.m; sourceTree = "<group>"; };
 		CE62A1DA2089E3450020F0EA /* HHSecKillQuotaVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHSecKillQuotaVC.h; sourceTree = "<group>"; };
 		CE62A1DB2089E3450020F0EA /* HHSecKillQuotaVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHSecKillQuotaVC.m; sourceTree = "<group>"; };
 		CE64944B20038BB900AC7C7A /* HHOrderDetailHead.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HHOrderDetailHead.xib; sourceTree = "<group>"; };
@@ -2187,6 +2190,8 @@
 				CE3DC98A2004D1FF004B1C4F /* HHCartAPI.m */,
 				CE3DC9862004D1EB004B1C4F /* HHCartModel.h */,
 				CE3DC9872004D1EB004B1C4F /* HHCartModel.m */,
+				CE5BC9BD21992351007A1C67 /* HHCartItemModel.h */,
+				CE5BC9BE21992351007A1C67 /* HHCartItemModel.m */,
 				CE0D0C1F200DB7100013596B /* HHtEditCarItem.h */,
 				CE0D0C20200DB7100013596B /* HHtEditCarItem.m */,
 			);
@@ -2922,6 +2927,7 @@
 				CE340CFA20240DC5005C9497 /* NJKWebViewProgress.m in Sources */,
 				CE876CC91FFF608300D9C9C1 /* DCSpeedy.m in Sources */,
 				CEC8BEF61FDF88F600B17DBE /* NSObject+Swizzling.m in Sources */,
+				CE5BC9BF21992351007A1C67 /* HHCartItemModel.m in Sources */,
 				CE33818E201F33D300ADE059 /* SGQRCodeGenerateManager.m in Sources */,
 				CEC8BF5A1FDFDF5000B17DBE /* HHCommentSection.m in Sources */,
 				CE12404D20215E8500FE5C1B /* XWCoolAnimator+XWExplode.m in Sources */,

@@ -71,7 +71,7 @@
 #import "HHgooodDetailModel.h"
 #import "HHWebViewVC.h"
 #import "HHQRCodeModel.h"
-
+#import "HHCartItemModel.h"
 
 //第三方
 #import <AFNetworking/AFNetworking.h>
