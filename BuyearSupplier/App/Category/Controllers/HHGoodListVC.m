@@ -13,6 +13,7 @@
 #import "SearchDetailViewController.h"
 #import "HHGoodBaseViewController.h"
 #import "HHCategoryVC.h"
+#import "HHSupplierListVC.h"
 
 @interface HHGoodListVC ()<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,HHSGSegmentedControlDelegate,SearchViewDelegate,SearchDetailViewControllerDelegate,DZNEmptyDataSetSource,DZNEmptyDataSetDelegate>
 {
@@ -20,7 +21,7 @@
     
 }
 @property (nonatomic, strong)   UICollectionView *collectionView;
-@property(nonatomic,strong)   HHSGSegmentedControl *SG;
+@property(nonatomic,strong)     HHSGSegmentedControl *SG;
 @property (nonatomic, strong)   NSMutableArray *title_arr;
 @property(nonatomic,assign)    NSInteger page;
 @property(nonatomic,assign)   NSInteger pageSize;
@@ -31,6 +32,8 @@
 @property(nonatomic,assign)   BOOL  isLoading;
 @property(nonatomic,assign)   BOOL  isWlan;
 @property (strong , nonatomic) NSURLSessionDataTask *sessionTask;
+@property(nonatomic,assign)   NSInteger  segment_type;
+
 
 @end
 
@@ -44,8 +47,6 @@
 - (void)viewDidLoad{
     
     [super viewDidLoad];
-    
-    self.datas = [NSMutableArray array];
     
     //商品列表
     self.page = 1;
@@ -68,6 +69,12 @@
 
     [self addHeadRefresh];
     
+}
+- (NSMutableArray *)datas{
+    if (!_datas) {
+        _datas = [NSMutableArray array];
+    }
+    return _datas;
 }
 - (void)setupSGSegmentedControl{
     
@@ -163,7 +170,6 @@
                 self.isWlan = YES;
                 [self addFootRefresh];
 //                [self.collectionView reloadEmptyDataSet];
-
                 [self loadDataFinish:api.data[@"list"]];
             }else{
                 [self.activityIndicator  stopAnimating];
@@ -317,18 +323,28 @@
 }
 #pragma mark - SearchDetailViewControllerDelegate
 
-- (void)tagViewButtonDidSelectedForTagTitle:(NSString *)title{
+- (void)tagViewButtonDidSelectedForTagTitle:(NSString *)title segment_type:(NSInteger)segment_type{
     
-    if (title.length>0) {
-        [searchView.search_placeholderBtn setTitle:title forState:UIControlStateNormal];
+    if (segment_type == 0) {
+        //全部
+        if (title.length>0) {
+            [searchView.search_placeholderBtn setTitle:title forState:UIControlStateNormal];
+            
+        }else{
+            [searchView.search_placeholderBtn setTitle:@"搜索想要的宝贝" forState:UIControlStateNormal];
+        }
+        //热门搜索/历史搜索标题
+        self.name = title;
+        [self.datas removeAllObjects];
+        [self getDatas];
         
     }else{
-        [searchView.search_placeholderBtn setTitle:@"搜索想要的宝贝" forState:UIControlStateNormal];
+        //供应商
+        
+        HHSupplierListVC *supp_vc = [HHSupplierListVC new];
+        supp_vc.name = title;
+        [self.navigationController pushVC:supp_vc];
     }
-    //热门搜索/历史搜索标题
-    self.name = title;
-    [self.datas removeAllObjects];
-    [self getDatas];
 }
 - (void)dismissButtonWasPressedForSearchDetailView:(id)searchView{
     

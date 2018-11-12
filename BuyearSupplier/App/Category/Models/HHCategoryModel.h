@@ -29,6 +29,10 @@
 @property(nonatomic,strong) NSString *product_promo_s_integral;
 @property(nonatomic,strong) NSString *product_supplier_name;
 @property(nonatomic,strong) NSString *product_supplier_id;
+
+@property(nonatomic,strong) NSString *name;
+@property(nonatomic,strong) NSString *logo;
+@property(nonatomic,strong) NSString *supplierId;
 @end
 
 @interface HHsub_categoryModel : BaseModel

@@ -38,13 +38,15 @@
 <SearchDetailViewDelegate,
 UITableViewDelegate,
 UITableViewDataSource,
-SKTagViewDelegate,SearchTagHeadViewDelegate>
+SKTagViewDelegate,SearchTagHeadViewDelegate,SGSegmentedControlDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *searchTagTableView;
 @property (strong, nonatomic) SearchDetailView *searchDetailView;
 @property (copy, nonatomic) NSMutableArray *tags;
 @property (strong, nonatomic) NSMutableArray *historyTags;
 @property (copy, nonatomic) NSArray *colors;
+@property(nonatomic,strong)   SGSegmentedControl *SG;
+@property (assign, nonatomic) NSInteger segment_type;
 
 @end
 
@@ -56,6 +58,13 @@ SKTagViewDelegate,SearchTagHeadViewDelegate>
     [super viewDidLoad];
     [self setupSearchView];
     [self registerCells];
+    
+    self.SG = [SGSegmentedControl segmentedControlWithFrame:CGRectMake(0, 0,ScreenW, 44) delegate:self segmentedControlType:(SGSegmentedControlTypeStatic) titleArr:@[@"全部",@"供应商"]];
+    self.SG.titleColorStateNormal = APP_purple_Color;
+    self.SG.titleColorStateSelected = APP_purple_Color;
+    self.SG.title_fondOfSize  = FONT(14);
+    self.SG.indicatorColor = APP_purple_Color;
+    self.searchTagTableView.tableHeaderView = self.SG;
     
     //获取数据
     [self getDatas];
@@ -147,17 +156,22 @@ SKTagViewDelegate,SearchTagHeadViewDelegate>
     [self.searchTagTableView registerNib:searchTagNib
                   forCellReuseIdentifier:NSStringFromClass([SearchTagTableViewCell class])];
 }
+#pragma mark - SGSegmentedControlDelegate
 
+- (void)SGSegmentedControl:(SGSegmentedControl *)segmentedControl didSelectBtnAtIndex:(NSInteger)index{
+    // 全部、供应商
+    self.segment_type = index;
+}
 #pragma mark - SKTagViewDelegate
 
 - (void)tagButtonDidSelectedForTagTitle:(NSString *)title {
     NSLog(@"热门搜索，历史搜索 title:::::::%@", title);
-    if (self.delegate && [self.delegate respondsToSelector:@selector(tagViewButtonDidSelectedForTagTitle:)]) {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(tagViewButtonDidSelectedForTagTitle:segment_type:)]) {
        
         [self.searchDetailView.textField resignFirstResponder];
         [self dismissViewControllerAnimated:NO
                                  completion:^{
-        [self.delegate tagViewButtonDidSelectedForTagTitle:title];
+        [self.delegate tagViewButtonDidSelectedForTagTitle:title segment_type:self.segment_type];
                                      
                                  }];
 
@@ -234,13 +248,13 @@ SKTagViewDelegate,SearchTagHeadViewDelegate>
 //点击键盘上的搜索按钮
 - (void)searchButtonWasPressedForSearchDetailView:(SearchDetailView *)searchView {
     NSLog(@"键盘搜索按钮:::::::::%@",searchView.textField.text);
-    if (self.delegate&&[self.delegate respondsToSelector:@selector(tagViewButtonDidSelectedForTagTitle:)]) {
+    if (self.delegate&&[self.delegate respondsToSelector:@selector(tagViewButtonDidSelectedForTagTitle:segment_type:)]) {
 
         [searchView.textField resignFirstResponder];
         [self dismissViewControllerAnimated:NO
                                  completion:^{
                                      
-        [self.delegate tagViewButtonDidSelectedForTagTitle:searchView.textField.text];
+        [self.delegate tagViewButtonDidSelectedForTagTitle:searchView.textField.text segment_type:self.segment_type];
 
                                  }];
     }

@@ -173,6 +173,7 @@
 		CE47111A200F53C4003192B7 /* HHgooodDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE471119200F53C4003192B7 /* HHgooodDetailModel.m */; };
 		CE4EFFC8219575B200F5322B /* HHCategoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4EFFC4219575B100F5322B /* HHCategoryModel.m */; };
 		CE4EFFC9219575B200F5322B /* HHCategoryAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4EFFC5219575B100F5322B /* HHCategoryAPI.m */; };
+		CE4EFFCC21958FDA00F5322B /* HHSupplierListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = CE4EFFCB21958FDA00F5322B /* HHSupplierListVC.m */; };
 		CE57C1D0206E1ED200FF2FBA /* HHMyOrderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CE57C1CF206E1ED200FF2FBA /* HHMyOrderItem.m */; };
 		CE5A3543207C75B10030E6DA /* HHWithDrawCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE5A3541207C75B00030E6DA /* HHWithDrawCell.m */; };
 		CE5A3544207C75B10030E6DA /* HHWithDrawCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CE5A3542207C75B00030E6DA /* HHWithDrawCell.xib */; };
@@ -685,6 +686,8 @@
 		CE4EFFC5219575B100F5322B /* HHCategoryAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHCategoryAPI.m; sourceTree = "<group>"; };
 		CE4EFFC6219575B100F5322B /* HHCategoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCategoryModel.h; sourceTree = "<group>"; };
 		CE4EFFC7219575B200F5322B /* HHCategoryAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHCategoryAPI.h; sourceTree = "<group>"; };
+		CE4EFFCA21958FDA00F5322B /* HHSupplierListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHSupplierListVC.h; sourceTree = "<group>"; };
+		CE4EFFCB21958FDA00F5322B /* HHSupplierListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHSupplierListVC.m; sourceTree = "<group>"; };
 		CE57C1CE206E1ED200FF2FBA /* HHMyOrderItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHMyOrderItem.h; sourceTree = "<group>"; };
 		CE57C1CF206E1ED200FF2FBA /* HHMyOrderItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HHMyOrderItem.m; sourceTree = "<group>"; };
 		CE5A3540207C75B00030E6DA /* HHWithDrawCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HHWithDrawCell.h; sourceTree = "<group>"; };
@@ -1767,6 +1770,8 @@
 				CE06FC121FEA573500F81C55 /* DCClassGoodsItem.m */,
 				CEBF94311FFCFCD6005E689B /* HHGoodListVC.h */,
 				CEBF94321FFCFCD6005E689B /* HHGoodListVC.m */,
+				CE4EFFCA21958FDA00F5322B /* HHSupplierListVC.h */,
+				CE4EFFCB21958FDA00F5322B /* HHSupplierListVC.m */,
 				CEF6CEEF1FFE074A0036E491 /* SearchDetailViewController.h */,
 				CEF6CEF11FFE074B0036E491 /* SearchDetailViewController.m */,
 				CEF6CEF01FFE074B0036E491 /* SearchDetailViewController.xib */,
@@ -2779,6 +2784,7 @@
 				CE0CADF720130CAC00ECA1A7 /* HHFinishLogVC.m in Sources */,
 				CE876CCD1FFF611700D9C9C1 /* DCLIRLButton.m in Sources */,
 				CEC8BF021FDF88F600B17DBE /* UIView+Utils.m in Sources */,
+				CE4EFFCC21958FDA00F5322B /* HHSupplierListVC.m in Sources */,
 				CE46522F203FF4D200CDBAF5 /* HHCooperationProtocolVC.m in Sources */,
 				CE3A61501FE8F2DE006C2754 /* HJOrderCell.m in Sources */,
 				CE338171201F1D2D00ADE059 /* UITextField+BXExtension.m in Sources */,
@@ -3167,7 +3173,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Buyear;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b307cdfe-c55a-4163-aa0b-f8d1f7860869";
-				PROVISIONING_PROFILE_SPECIFIER = iOS_buyear_ahc_PP;
+				PROVISIONING_PROFILE_SPECIFIER = iOS_buyear_ahc;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

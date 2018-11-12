@@ -12,7 +12,7 @@
 
 @protocol SearchDetailViewControllerDelegate <NSObject>
 
-- (void)tagViewButtonDidSelectedForTagTitle:(NSString *)title;
+- (void)tagViewButtonDidSelectedForTagTitle:(NSString *)title segment_type:(NSInteger)segment_type;
 
 - (void)dismissButtonWasPressedForSearchDetailView:(SearchDetailView *)searchView;
 

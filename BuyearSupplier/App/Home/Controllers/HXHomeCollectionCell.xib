@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -104,6 +103,7 @@
                 <outlet property="product_nameLabel" destination="04k-dS-PNf" id="9ur-Yb-PhB"/>
                 <outlet property="product_s_intergralLabel" destination="BFu-Al-SfU" id="S6w-SU-YLu"/>
                 <outlet property="product_supplier_name_btn" destination="JHw-oX-OxY" id="uXg-07-7ej"/>
+                <outlet property="tagConstraint" destination="jrs-1v-DU6" id="4io-gW-UbG"/>
                 <outlet property="tagLabel" destination="FYK-Al-ogW" id="iKb-gU-AO6"/>
             </connections>
             <point key="canvasLocation" x="34" y="53.5"/>

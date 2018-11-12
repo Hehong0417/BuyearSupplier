@@ -17,4 +17,8 @@
 
 //获取商品列表
 + (instancetype)GetProductListWithType:(NSNumber *)type categoryId:(NSString *)categoryId name:(NSString *)name orderby:(NSNumber *)orderby page:(NSNumber *)page pageSize:(NSNumber *)pageSize supplierId:(NSString *)supplierId;
+
+//获取供应商列表
++ (instancetype)GetSupplierListWithName:(NSString *)name;
+
 @end

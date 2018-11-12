@@ -173,7 +173,7 @@
     HHGoodListVC *vc = [HHGoodListVC new];
     vc.enter_Type = HHenter_home_Type;
     [self.navigationController pushVC:vc];
-    
+
 }
 //切换
 - (void)swapAction{

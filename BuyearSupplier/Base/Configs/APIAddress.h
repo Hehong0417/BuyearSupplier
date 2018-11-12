@@ -93,7 +93,8 @@ typedef enum : NSUInteger {
 #define API_Product_search API_SUB_URL(@"ProductApi/ApiProduct/Search")
 //3.5获取单个商品
 #define API_GetProductDetail API_SUB_URL(@"ProductApi/ApiProduct/GetProductDetail")
-
+//3.6获取供应商列表
+#define API_SearchSupplier API_SUB_URL(@"CustomerApi/Supplier/SearchSupplier")
 /**
  *  购物车
  */

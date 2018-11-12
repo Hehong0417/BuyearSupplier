@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *product_min_priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *product_s_intergralLabel;
 @property (weak, nonatomic) IBOutlet UIButton *product_supplier_name_btn;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *tagConstraint;
 
 
 //首页商品列表
@@ -24,6 +25,9 @@
 
 //分类商品列表
 @property(nonatomic,strong) HHCategoryModel *goodsModel;
+
+//供应商s
+@property(nonatomic,strong) HHCategoryModel *supplierModel;
 
 @end
 

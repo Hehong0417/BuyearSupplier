@@ -96,5 +96,17 @@
 
 }
 
+- (void)setSupplierModel:(HHCategoryModel *)supplierModel{
+     _supplierModel = supplierModel;
+    
+    self.tagConstraint.constant = 0;
+    self.product_min_priceLabel.hidden = YES;
+    self.product_s_intergralLabel.hidden = YES;
+    self.product_supplier_name_btn.hidden = YES;
+    self.tagLabel.text = @"";
+    self.tagLabel.hidden = YES;
+    self.product_nameLabel.text = supplierModel.name;
+    [self.goodImageV sd_setImageWithURL:[NSURL URLWithString:supplierModel.logo]];
+}
 
 @end

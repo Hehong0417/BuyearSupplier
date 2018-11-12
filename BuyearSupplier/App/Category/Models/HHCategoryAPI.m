@@ -55,5 +55,17 @@
     
     return api;
 }
-
+//获取供应商列表
++ (instancetype)GetSupplierListWithName:(NSString *)name{
+    HHCategoryAPI *api = [self new];
+    api.subUrl = API_SearchSupplier;
+    if (name) {
+        [api.parameters setObject:name forKey:@"name"];
+    }
+    
+    api.parametersAddToken = NO;
+    
+    return api;
+    
+}
 @end
